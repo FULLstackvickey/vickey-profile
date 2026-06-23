@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Architect | Skills</title>
+    <meta name="description" content="My Skills and Tools">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .skills-main {
+            padding-bottom: 4rem;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skills-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .skills-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .skills-card-header svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--neon-orange);
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .skills-card-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Progress Bars */
+        .skill-item {
+            margin-bottom: 1.8rem;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .skill-name-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .skill-icon-badge {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 94, 0, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-orange);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .skill-name {
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .skill-percentage {
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: var(--neon-orange);
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--neon-orange);
+            width: 0%;
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .tool-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .tool-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .tool-icon svg {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.1));
+        }
+
+        .tool-item:hover .tool-icon {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .tool-name {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Expertise Grid */
+        .expertise-section {
+            margin-top: 4rem;
+        }
+
+        .expertise-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .expertise-header::before,
+        .expertise-header::after {
+            content: '';
+            width: 60px;
+            height: 2px;
+            background: var(--neon-orange);
+            box-shadow: 0 0 10px var(--neon-orange);
+        }
+
+        .expertise-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.5rem;
+        }
+
+        .expertise-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 2rem 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .expertise-card:hover {
+            border-color: var(--neon-orange);
+            box-shadow: 0 0 20px var(--neon-orange-dim);
+            transform: translateY(-5px);
+        }
+
+        .expertise-icon {
+            width: 50px;
+            height: 50px;
+            color: var(--neon-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .expertise-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke-width: 1.5;
+        }
+
+        .expertise-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            line-height: 1.4;
+            color: #fff;
+        }
+
+        .expertise-desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        @media (max-width: 1024px) {
+            .expertise-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-bg common-bg"></div>
+    <div class="bg-overlay"></div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                        <rect x="3" y="7" width="18" height="13" rx="2" stroke-width="2"/>
+                        <circle cx="12" cy="13" r="4" stroke-width="2"/>
+                        <path d="M7 7V5a2 2 0 012-2h6a2 2 0 012 2v2" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">VISUAL ARCHITECT</span>
+                    <span class="logo-subtitle">CODE. CREATE. CAPTURE.</span>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="skills.html" class="active">Skills</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="nav-controls">
+                <button id="light-toggle" class="light-toggle" aria-label="Toggle Lighting">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" fill="none">
+                        <circle cx="12" cy="12" r="4" stroke-width="2"/>
+                        <path d="M12 3v2M12 19v2M5 12H3M21 12h-2M7.5 7.5L6 6M18 18l-1.5-1.5M7.5 16.5L6 18M18 6l-1.5 1.5" stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <main class="skills-main">
+            <div class="section-header">
+                <div class="my-text">MY</div>
+                <div class="header-lines"></div>
+                <h2>SKILLS</h2>
+                <p>A combination of technical skills and creative tools<br>I use to bring ideas to life.</p>
+            </div>
+
+            <div class="skills-container">
+                <!-- Technical Skills -->
+                <div class="skills-card">
+                    <div class="skills-card-header">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                        </svg>
+                        <h3>MY SKILLS</h3>
+                    </div>
+                    
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name-container">
+                                    <div class="skill-icon-badge">H5</div>
+                                    <span class="skill-name">HTML</span>
+                                </div>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" data-width="95%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name-container">
+                                    <div class="skill-icon-badge" style="background: rgba(41,101,241,0.2); color:#2965f1;">C3</div>
+                                    <span class="skill-name">CSS</span>
+                                </div>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" data-width="90%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name-container">
+                                    <div class="skill-icon-badge" style="background: rgba(240,219,79,0.2); color:#f0db4f;">JS</div>
+                                    <span class="skill-name">JavaScript</span>
+                                </div>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" data-width="85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <div class="skill-name-container">
+                                    <div class="skill-icon-badge" style="background: rgba(55,118,171,0.2); color:#3776AB;">PY</div>
+                                    <span class="skill-name">Python</span>
+                                </div>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" data-width="75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="skills-card">
+                    <div class="skills-card-header">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                        <h3>MY TOOLS</h3>
+                    </div>
+                    
+                    <div class="tools-grid">
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M255.875 51.584l-57.876-46.066c-5.546-4.524-13.61-.17-13.61 7.125v45.184L69.64 3.018a14.774 14.774 0 0 0-16.726 1.876l-50.56 46.25a6.438 6.438 0 0 0-.085 9.471l60.203 57.878-60.032 58.005a6.476 6.476 0 0 0-.042 9.215l50.347 48.086a14.717 14.717 0 0 0 16.512 2.304l114.997-55.808v48.513c0 7.21 8.02 11.648 13.61 7.124l57.876-46.108a10.603 10.603 0 0 0 3.734-8.086V59.734a10.687 10.687 0 0 0-3.6-8.15z" fill="#0065A9"/><path d="M184.346 57.828v140.45l57.919 46.107a10.518 10.518 0 0 0 6.955 2.603h.341a10.603 10.603 0 0 0 6.315-9.878V59.734a10.645 10.645 0 0 0-6.613-9.835 10.56 10.56 0 0 0-6.955.042l-57.962-46.108c-5.589-4.522-13.61-.17-13.61 7.125v46.87z" fill="#007ACC"/><path d="M184.389 57.828L69.64 3.018a14.774 14.774 0 0 0-16.726 1.876l-50.56 46.25a6.438 6.438 0 0 0-.085 9.471l141.259 135.595c2.688 2.56 6.87 2.475 9.471-.214a6.63 6.63 0 0 0-.213-9.258z" fill="#1F9CF0"/><path d="M184.389 198.3l-114.997 55.83a14.717 14.717 0 0 1-16.512-2.305l-50.347-48.085a6.476 6.476 0 0 1 .042-9.215l140.79-136.064c2.645-2.56 6.826-2.518 9.428.128s2.518 6.784-.128 9.387z" fill="#0065A9"/></svg>
+                            </div>
+                            <span class="tool-name">VS Code</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M161.7 53.94c0-29.74-24.12-53.86-53.86-53.86a53.85 53.85 0 0 0-53.85 53.86v53.86h53.86a53.87 53.87 0 0 0 53.86-53.86z" fill="#F24E1E"/><path d="M53.98 107.8h53.86v53.86H53.98A53.85 53.85 0 0 1 .13 107.8c0-29.73 24.12-53.85 53.86-53.85z" fill="#A259FF"/><path d="M53.98 161.66h53.86v53.86a53.86 53.86 0 0 1-53.86-53.86z" fill="#1ABCFE"/><path d="M107.84 215.52v40.35a53.84 53.84 0 0 0 53.86-53.85A53.84 53.84 0 0 0 107.84 148v67.51z" fill="#0ACF83"/><path d="M161.7 107.8a53.86 53.86 0 1 0 0-107.72 53.86 53.86 0 0 0 0 107.72z" fill="#FF7262"/></svg>
+                            </div>
+                            <span class="tool-name">Figma</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <!-- DaVinci Resolve approximate SVG -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="url(#davinci-grad)" stroke-width="2">
+                                    <defs>
+                                        <linearGradient id="davinci-grad" x1="0" y1="0" x2="1" y2="1">
+                                            <stop offset="0%" stop-color="#FF3366" />
+                                            <stop offset="50%" stop-color="#FF9933" />
+                                            <stop offset="100%" stop-color="#33CCFF" />
+                                        </linearGradient>
+                                    </defs>
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 2a10 10 0 0 1 8.5 15.3l-8.5-5.3L3.5 17.3A10 10 0 0 1 12 2z" fill="url(#davinci-grad)" opacity="0.3"/>
+                                    <circle cx="12" cy="12" r="3" fill="#fff" stroke="none"/>
+                                </svg>
+                            </div>
+                            <span class="tool-name">DaVinci Resolve</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <!-- CapCut approximate logo -->
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <rect width="24" height="24" rx="6" fill="#fff" />
+                                    <path d="M6 18V6l5 4.5v3l-5 4.5z" fill="#000" />
+                                    <path d="M18 6v12l-5-4.5v-3L18 6z" fill="#000" />
+                                </svg>
+                            </div>
+                            <span class="tool-name">CapCut</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <!-- Canva logo -->
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="12" fill="#00C4CC"/>
+                                    <path d="M16.5 8C16.5 8 13.5 6 9.5 8C6.5 9.5 5 13 6 16C7.5 19 12 20 15 17C15 17 14 15 11.5 15.5C9 16 7.5 14 8 11.5C8.5 9 12 9 14.5 10C14.5 10 15.5 11 16 11C16.5 11 17.5 9 16.5 8Z" fill="#FFF"/>
+                                </svg>
+                            </div>
+                            <span class="tool-name">Canva</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <svg viewBox="0 0 24 24" fill="#fff">
+                                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                                </svg>
+                            </div>
+                            <span class="tool-name">GitHub</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ff5e00" stroke-width="2">
+                                    <circle cx="12" cy="12" r="8"/>
+                                    <path d="M12 2L12 6M12 18L12 22M2 12L6 12M18 12L22 12M4.9 4.9L7.7 7.7M16.3 16.3L19.1 19.1M4.9 19.1L7.7 16.3M16.3 7.7L19.1 4.9"/>
+                                    <circle cx="12" cy="12" r="3" fill="#ff5e00"/>
+                                </svg>
+                            </div>
+                            <span class="tool-name">Anti Gravity AI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Areas of Expertise -->
+            <div class="expertise-section">
+                <div class="expertise-header">
+                    <h3>AREAS OF EXPERTISE</h3>
+                </div>
+                
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
+                            </svg>
+                        </div>
+                        <h4 class="expertise-title">Frontend<br>Development</h4>
+                        <p class="expertise-desc">Building responsive and user-friendly websites.</p>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="2" y="4" width="20" height="16" rx="2" ry="2"/>
+                                <polygon points="10 8 16 12 10 16 10 8"/>
+                            </svg>
+                        </div>
+                        <h4 class="expertise-title">Video<br>Editing</h4>
+                        <p class="expertise-desc">Creating engaging videos that tell your story.</p>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 4v16m0-16c-3-1-6 2-6 5m6-5c3-1 6 2 6 5m-6 11c-4-2-8-5-8-10m8 10c4-2 8-5 8-10"/>
+                                <circle cx="12" cy="14" r="4"/>
+                            </svg>
+                        </div>
+                        <h4 class="expertise-title">Animation<br>& Motion</h4>
+                        <p class="expertise-desc">Bringing ideas to life with smooth motion and effects.</p>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <rect x="3" y="3" width="18" height="14" rx="2" ry="2"/>
+                                <path d="M8 21h8m-4-4v4"/>
+                            </svg>
+                        </div>
+                        <h4 class="expertise-title">Poster<br>Editing</h4>
+                        <p class="expertise-desc">Designing creative posters that grab attention.</p>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="2" y1="12" x2="22" y2="12"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </div>
+                        <h4 class="expertise-title">Web<br>Design</h4>
+                        <p class="expertise-desc">Designing modern, clean and functional web interfaces.</p>
+                    </div>
+
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                                <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                                <path d="M2 2l7.586 7.586"></path>
+                            </svg>
+                        </div>
+                        <h4 class="expertise-title">UI/UX<br>Design</h4>
+                        <p class="expertise-desc">Crafting intuitive and visually appealing user experiences.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Trigger progress bar animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.progress-bar-fill');
+                progressBars.forEach(bar => {
+                    const width = bar.getAttribute('data-width');
+                    bar.style.width = width;
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
